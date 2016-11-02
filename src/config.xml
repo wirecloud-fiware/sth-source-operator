@@ -21,13 +21,14 @@
         <preference name="sth_server" type="text" label="STH server URL" description="URL of the STH server to use for retrieving entity information" default="http://sth.lab.fiware.org:8666/STH"/>
         <preference name="ngsi_tenant" type="text" label="NGSI tenant/service" description="Tenant/service to use when connecting to the context broker. Must be a string of alphanumeric characters (lowercase) and the &quot;_&quot; symbol. Maximum length is 50 characters. If empty, the default tenant will be used" default=""/>
         <preference name="ngsi_service_path" type="text" label="NGSI scope" description="Scope/path to use when connecting to the context broker. Must be a string of alphanumeric characters (lowercase) and the &quot;_&quot; symbol separated by &quot;/&quot; slashes. Maximum length is 50 characters. If empty, the default service path will be used: /" default="/"/>
-        <preference name="entity" type="text" label="Initial Entity" description="Attribute to query about." default="temperature" />
-        <preference name="attribute" type="text" label="Attribute" description="Attribute to query about." default="temperature" />
+        <preference name="entity_type" type="text" label="Entity Type" description="Entity Type to use for retrieving entity information. Currently this preference cannot be empty." default="weather.station" />
+        <preference name="entity" type="text" label="Initial Entity" description="Id of the initial entity to query. Leave this preference empty for disabling this initial query." default="weather.station.001" />
+        <preference name="attribute" type="text" label="Attribute" description="Attribute of the entity to query about." default="temperature" />
     </preferences>
     <wiring>
         <inputendpoint name="entity" type="text" label="Entity" description="Entity information to use for retrieving the historical information" friendcode="entity"/>
-        <outputendpoint name="values" type="text" label="Values" description="Values" friendcode="entity"/>
-        <outputendpoint name="timestamps" type="text" label="Timestamps" description="Value timestamps" friendcode="entity"/>
+        <outputendpoint name="values" type="text" label="Values" description="Values" friendcode="data-serie"/>
+        <outputendpoint name="timestamps" type="text" label="Timestamps" description="Value timestamps" friendcode="timestamp-list"/>
     </wiring>
     <scripts>
         <script src="js/main.js"/>

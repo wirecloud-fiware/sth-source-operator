@@ -1,7 +1,4 @@
-This operator allows you to use any Orion Context Broker server as source of
-data. This is accomplished by creating a subscription to obtain real time
-notifications about changes on the entities of interest.
-
-### References
-
-* [Orion Context Broker info](http://catalogue.fiware.org/enablers/publishsubscribe-context-broker-orion-context-broker)
+The STH source operator is a WireCloud operator that allows you to retrieve
+historical information about context broker entities through the use of the
+[Short Time Historic](https://github.com/telefonicaid/fiware-sth-comet)
+(Comet) component.

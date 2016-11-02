@@ -37,7 +37,7 @@
     /******************************************************************************/
 
     var HLIMIT = 10 /* days */ * 24 /* hours */ * 60 /* mins */ * 60 /* seconds */;
-    var type = 'weather.station';
+    var entity_type = mp.prefs.get('entity_type');
     var entity = mp.prefs.get('entity');
 
     var requestData = function requestData() {
