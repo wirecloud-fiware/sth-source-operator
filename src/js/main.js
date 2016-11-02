@@ -63,7 +63,7 @@
         //var to = today;
         var attribute = mp.prefs.get('attribute');
 
-        var url = new URL('v1/contextEntities/type/' + type + '/id/' + entity + '/attributes/' + attribute, server);
+        var url = new URL('v1/contextEntities/type/' + entity_type + '/id/' + entity + '/attributes/' + attribute, server);
         mp.http.makeRequest(url, {
             method: "GET",
             requestHeaders: request_headers,
