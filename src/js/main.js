@@ -20,9 +20,10 @@
 
     "use strict";
 
-    /******************************************************************************/
-    /********************************* PUBLIC *************************************/
-    /******************************************************************************/
+
+    // =========================================================================
+    // PUBLIC
+    // =========================================================================
 
     var STHSource = function STHSource() {
         mp.wiring.registerCallback("entity", function (entity) {
@@ -32,9 +33,9 @@
         requestData();
     };
 
-    /******************************************************************************/
-    /********************************* PRIVATE ************************************/
-    /******************************************************************************/
+    // =========================================================================
+    // PRIVATE
+    // =========================================================================
 
     var HLIMIT = 10 /* days */ * 24 /* hours */ * 60 /* mins */ * 60 /* seconds */;
     var entity_type = mp.prefs.get('entity_type');
@@ -60,7 +61,7 @@
 
         var today = new Date();
         var from = new Date(today - (10 /* days */ * 24 /* hours */ * 60 /* mins */ * 60 /* segs */ * 1000 /* miliseconds */));
-        //var to = today;
+        // var to = today;
         var attribute = mp.prefs.get('attribute');
 
         var url = new URL('v1/contextEntities/type/' + entity_type + '/id/' + entity + '/attributes/' + attribute, server);
@@ -69,7 +70,7 @@
             requestHeaders: request_headers,
             parameters: {
                 lastN: HLIMIT,
-                dateFrom: from.toISOString()/*,
+                dateFrom: from.toISOString()/* ,
                 dateTo: to.toISOString()*/
             }
         }).then(function (response) {
