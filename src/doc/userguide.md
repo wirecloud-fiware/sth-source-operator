@@ -27,7 +27,7 @@ historical information about context broker entities through the use of the
 
 ### Input Endpoints
 
-- This widget has no input endpoint
+- This operator has no input endpoint
 
 ### Output Endpoints
 
