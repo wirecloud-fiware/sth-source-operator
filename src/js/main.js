@@ -65,6 +65,7 @@
         var attribute = mp.prefs.get('attribute');
 
         var url = new URL('v1/contextEntities/type/' + entity_type + '/id/' + entity + '/attributes/' + attribute, server);
+        
         mp.http.makeRequest(url, {
             method: "GET",
             requestHeaders: request_headers,
@@ -72,20 +73,20 @@
                 lastN: HLIMIT,
                 dateFrom: from.toISOString()/* ,
                 dateTo: to.toISOString()*/
-            }
-        }).then(function (response) {
-            if (response.status !== 200) {
-                throw new Error('Unexpected response from STH');
-            }
-
-            // Current version of STH only provides a contextResponse and only a attribute entry
-            var data = JSON.parse(response.responseText).contextResponses[0].contextElement.attributes[0].values;
-            mp.wiring.pushEvent("values", data.map(function (entry) {return Number(entry.attrValue);}));
-            mp.wiring.pushEvent("timestamps", data.map(function (entry) {return (new Date(entry.recvTime)).getTime();}));
-        }).catch(function (reason) {
-            mp.operator.log(reason);
+            },
+                onSuccess: function (response) {
+                        var data = JSON.parse(response.responseText).contextResponses[0].contextElement.attributes[0].values;
+                        mp.wiring.pushEvent("values", data.map(function (entry) {return Number(entry.attrValue);}));
+                        mp.wiring.pushEvent("timestamps", data.map(function (entry) {return (new Date(entry.recvTime)).getTime();}));
+                },
+                onFailure: function (response) {
+                        throw new Error('Unexpected response from STH');
+                },
+                onComplete: function () {
+                        mp.operator.log(reason);
+                }
         });
-    };
+     };
 
     new STHSource();
 
