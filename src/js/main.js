@@ -55,7 +55,7 @@
         }
 
         var path = mp.prefs.get('ngsi_service_path').trim().toLowerCase();
-        if (path !== '' && path !== '/') {
+        if (path !== '') {
             request_headers['FIWARE-ServicePath'] = path;
         }
 
